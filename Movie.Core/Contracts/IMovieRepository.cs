@@ -1,10 +1,9 @@
-using Movie.Core.DTOs;
 using Movie.Core.Models;
 
 namespace Movie.Core.Contracts;
 
 public interface IMovieRepository: IRepositoryBase<MovieModel>
 {
-    public Task<IEnumerable<MovieDto>> GetAllMovies();
-    public Task<MovieDto> GetMovieById(int id);
+    public Task<IEnumerable<MovieModel>> GetAllMovies();
+    public Task<MovieModel?> GetMovieById(int id);
 }
