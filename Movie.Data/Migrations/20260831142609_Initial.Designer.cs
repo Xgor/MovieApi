@@ -10,7 +10,7 @@ using Movie.Data;
 namespace Movie.Data.Migrations
 {
     [DbContext(typeof(MovieApiContext))]
-    [Migration("20260818144311_Initial")]
+    [Migration("20260831142609_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -19,7 +19,7 @@ namespace Movie.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.11");
 
-            modelBuilder.Entity("MovieApi.Models.Movie", b =>
+            modelBuilder.Entity("Movie.Core.Models.MovieModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
