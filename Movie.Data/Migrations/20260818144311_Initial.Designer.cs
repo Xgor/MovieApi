@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MovieApi.Data;
+using Movie.Data;
 
 #nullable disable
 
-namespace MovieApi.Migrations
+namespace Movie.Data.Migrations
 {
     [DbContext(typeof(MovieApiContext))]
     [Migration("20260818144311_Initial")]

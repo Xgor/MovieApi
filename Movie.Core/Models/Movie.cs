@@ -1,9 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
+namespace Movie.Core.Models;
 
-namespace MovieApi.Models;
-
-public class Movie
+public class MovieModel
 {
     public int Id { get; set; }
     [MaxLength(50)]

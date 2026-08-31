@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace MovieApi.Migrations
+namespace Movie.Data.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

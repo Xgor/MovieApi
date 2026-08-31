@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MovieApi.Data;
-using MovieApi.Models;
-using MovieApi.Models.DTOs;
+using Movie.Core.DTOs;
+using Movie.Core.Models;
+using Movie.Data;
 
-namespace MovieApi.Controllers;
+namespace Movie.Api.Controllers;
 
 [Route("api/movie")]
 [ApiController]
@@ -55,7 +55,7 @@ public class MoviesController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<MovieDto>> CreateMovie(CreateMovieDto dto)
     {
-        var movie = new Movie()
+        var movie = new MovieModel()
         {
             Description = dto.Description,
             Director = dto.Director,

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MovieApi.Models;
+using Movie.Core.Models;
 
-namespace MovieApi.Data
+namespace Movie.Data
 {
     public class MovieApiContext : DbContext
     {
@@ -14,6 +14,6 @@ namespace MovieApi.Data
         {
         }
 
-        public DbSet<MovieApi.Models.Movie> Movie { get; set; } = default!;
+        public DbSet<MovieModel> Movie { get; set; } = default!;
     }
 }

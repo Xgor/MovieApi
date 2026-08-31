@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MovieApi.Data;
+using Movie.Data;
 
 #nullable disable
 
-namespace MovieApi.Migrations
+namespace Movie.Data.Migrations
 {
     [DbContext(typeof(MovieApiContext))]
     partial class MovieApiContextModelSnapshot : ModelSnapshot
@@ -16,7 +16,7 @@ namespace MovieApi.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.11");
 
-            modelBuilder.Entity("MovieApi.Models.Movie", b =>
+            modelBuilder.Entity("Movie.Api.Models.Movie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
