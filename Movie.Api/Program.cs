@@ -1,8 +1,12 @@
+using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Movie.Contracts;
 using Movie.Core.Contracts;
 using Movie.Data;
 using Movie.Data.Repositories;
+using Movie.Services;
+using MovieApi.Extensions;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +20,11 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+builder.Services.AddScoped<IMovieService, MovieService>();
+
+
+
+builder.Services.AddMapster();
 
 var app = builder.Build();
 

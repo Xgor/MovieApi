@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Movie.Contracts;
 using Movie.Core.DTOs;
 using Movie.Core.Models;
 using Movie.Data;
@@ -10,15 +11,19 @@ namespace Movie.Api.Controllers;
 [ApiController]
 public class MoviesController : ControllerBase
 {
-    private readonly MovieApiContext _context;
-    public MoviesController(MovieApiContext context)
+  //  private readonly MovieApiContext _context;
+    private readonly IServiceManager _serviceManager;
+    public MoviesController(IServiceManager serviceManager)
     {
-        _context = context;
+        _serviceManager = serviceManager;
+     //   _context = context;
     }
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<MovieDto>>> GetMovies()
     {
+        var movies = await _serviceManager.MovieService.GetMoviesAsync();
+        /*
         var movies = await _context.Movie.Select(m => new MovieDto()
         {
             Description = m.Description,
@@ -30,9 +35,10 @@ public class MoviesController : ControllerBase
             ReleaseYear = m.ReleaseYear,
             Title = m.Title
         }).ToListAsync();
+        */
         return Ok(movies);
     }
-
+/*
     [HttpGet("{id:int}")]
     public async Task<ActionResult<MovieDto>> GetMovie(int id)
     {
@@ -70,4 +76,5 @@ public class MoviesController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok(movie);
     }
+    */
 }

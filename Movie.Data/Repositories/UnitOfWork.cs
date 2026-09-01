@@ -4,14 +4,14 @@ namespace Movie.Data.Repositories;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private MovieApiContext _context;
-    private Lazy<IMovieRepository> _movieRepository { get; set; }
-    public IMovieRepository MovieRepository => _movieRepository.Value;
+    private readonly MovieApiContext _context;
+ //   private Lazy<IMovieRepository> _movieRepository;
+    public IMovieRepository MovieRepository { get; }
 
-    public UnitOfWork(MovieApiContext context,Lazy<IMovieRepository> movieRepository)
+    public UnitOfWork(MovieApiContext context,IMovieRepository movieRepository)
     {
         _context = context;
-        _movieRepository =  movieRepository;
+        MovieRepository =  movieRepository;
     }
 
     public async Task<int> CompleteAsync() => await _context.SaveChangesAsync();
