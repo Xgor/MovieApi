@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Movie.Core.Contracts;
 using Movie.Data;
+using Movie.Data.Repositories;
 
-    
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MovieApiContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("MovieApiContext") ?? throw new InvalidOperationException("Connection string 'MovieApiContext' not found.")));
@@ -12,6 +14,8 @@ builder.Services.AddDbContext<MovieApiContext>(options =>
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
+builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 
 var app = builder.Build();
 

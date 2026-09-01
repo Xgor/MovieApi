@@ -7,6 +7,8 @@ namespace Movie.Data.Repositories;
 
 public class MovieRepository : IMovieRepository
 {
+    
+    
     private readonly MovieApiContext _context;
     public MovieRepository(MovieApiContext context)
     {
