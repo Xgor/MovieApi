@@ -42,4 +42,9 @@ public class MovieRepository : IMovieRepository
     {
         return await _context.Movie.FindAsync(id);
     }
+    
+    public async  Task<MovieModel?> GetMovieByTitle(string title)
+    {
+        return await _context.Movie.FirstOrDefaultAsync(m => m.Title == title);
+    }
 }

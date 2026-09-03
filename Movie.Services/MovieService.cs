@@ -34,10 +34,14 @@ public class MovieService : IMovieService
     public async Task CreateMovieAsync(CreateMovieDto dto)
     {
         MovieModel model = _mapper.Map<MovieModel>(dto);
+
+        if (await _uow.MovieRepository.GetMovieByTitle(dto.Title) != null) return; // Return error or something
         _uow.MovieRepository.Create(model);
         await _uow.CompleteAsync();
         //throw new NotImplementedException();
     }
+    
+    
 
     public async Task DeleteMovieAsync(int id)
     {
