@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Movie.Contracts;
 using Movie.Core.Contracts;
+using Movie.Core.DTOs;
+using Movie.Core.Models;
 using Movie.Data;
 using Movie.Data.Repositories;
 using Movie.Services;
@@ -20,9 +22,13 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+
+builder.Services.AddScoped<IServiceManager, ServiceManager>();
 builder.Services.AddScoped<IMovieService, MovieService>();
 
-
+TypeAdapterConfig<UpdateMovieDto, MovieModel>
+    .NewConfig()
+    .IgnoreNullValues(true);
 
 builder.Services.AddMapster();
 

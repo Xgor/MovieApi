@@ -1,7 +1,9 @@
+using Mapster;
 using MapsterMapper;
 using Movie.Contracts;
 using Movie.Core.Contracts;
 using Movie.Core.DTOs;
+using Movie.Core.Models;
 
 namespace Movie.Services;
 
@@ -21,23 +23,37 @@ public class MovieService : IMovieService
         return _mapper.Map<IEnumerable<MovieDto>>(movies);
     }
 
-    public async Task<MovieDto> GetMovieAsync(int id, bool trackChanges = false)
+    public async Task<MovieDto?> GetMovieAsync(int id, bool trackChanges = false)
     {
-        throw new NotImplementedException();
+        var movie = await _uow.MovieRepository.GetMovieById(id);
+        if (movie == null) return null;
+        return _mapper.Map<MovieDto>(movie);
+//        throw new NotImplementedException();
     }
 
     public async Task CreateMovieAsync(CreateMovieDto dto)
     {
-        throw new NotImplementedException();
+        MovieModel model = _mapper.Map<MovieModel>(dto);
+        _uow.MovieRepository.Create(model);
+        await _uow.CompleteAsync();
+        //throw new NotImplementedException();
     }
 
     public async Task DeleteMovieAsync(int id)
     {
-        throw new NotImplementedException();
+        var movie = await _uow.MovieRepository.GetMovieById(id);
+        _uow.MovieRepository.Delete(movie);
+        await _uow.CompleteAsync();
     }
 
-    public Task<MovieDto> UpdateMovieAsync(int id)
+    public async Task<MovieDto> UpdateMovieAsync(UpdateMovieDto dto)
     {
-        throw new NotImplementedException();
+        var movie = await _uow.MovieRepository.GetMovieById(dto.Id);
+
+        _mapper.Map(dto, movie);
+        
+        _uow.MovieRepository.Update(movie);
+        await _uow.CompleteAsync();
+        return _mapper.Map<MovieDto>(movie);
     }
 }

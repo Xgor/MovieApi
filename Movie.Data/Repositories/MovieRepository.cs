@@ -18,13 +18,19 @@ public class MovieRepository : IMovieRepository
     public async void Create(MovieModel entity)
     {
         _context.Movie.Add(entity);
-        await _context.SaveChangesAsync();
+    //    await _context.SaveChangesAsync();
     }
 
     public async void Delete(MovieModel entity)
     {
         _context.Movie.Remove(entity);
-        await _context.SaveChangesAsync();
+   //     await _context.SaveChangesAsync();
+    }
+
+    public async void Update(MovieModel entity)
+    {
+        _context.Movie.Update(entity);
+//        await _context.SaveChangesAsync();
     }
 
     public async Task<IEnumerable<MovieModel>> GetAllMovies()

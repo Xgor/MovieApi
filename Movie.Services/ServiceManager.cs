@@ -8,7 +8,7 @@ public class ServiceManager : IServiceManager
   //  public IMovieService MovieService => _movieService.Value;
   
     public IMovieService MovieService { get; }
-    public ServiceManager(MovieService movieService)
+    public ServiceManager(IMovieService movieService)
     {
         MovieService = movieService;
     }
