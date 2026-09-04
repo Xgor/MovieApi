@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Movie.Contracts;
 using Movie.Core.DTOs;
-using Movie.Core.Models;
-using Movie.Data;
 
 namespace Movie.Api.Controllers;
 
