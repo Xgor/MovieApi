@@ -26,7 +26,6 @@ public class MovieService : IMovieService
     public async Task<MovieDto?> GetMovieAsync(int id, bool trackChanges = false)
     {
         var movie = await _uow.MovieRepository.GetMovieById(id);
-        if (movie == null) return null;
         return _mapper.Map<MovieDto>(movie);
 //        throw new NotImplementedException();
     }
@@ -35,7 +34,7 @@ public class MovieService : IMovieService
     {
         MovieModel model = _mapper.Map<MovieModel>(dto);
 
-        if (await _uow.MovieRepository.GetMovieByTitle(dto.Title) != null) return; // Return error or something
+        if (await _uow.MovieRepository.GetMovieByTitle(dto.Title) != null) throw new Exception("Title already exists"); 
         _uow.MovieRepository.Create(model);
         await _uow.CompleteAsync();
         //throw new NotImplementedException();
@@ -46,6 +45,7 @@ public class MovieService : IMovieService
     public async Task DeleteMovieAsync(int id)
     {
         var movie = await _uow.MovieRepository.GetMovieById(id);
+        if (movie == null) throw new Exception("Movie not found");
         _uow.MovieRepository.Delete(movie);
         await _uow.CompleteAsync();
     }
@@ -53,7 +53,7 @@ public class MovieService : IMovieService
     public async Task<MovieDto> UpdateMovieAsync(UpdateMovieDto dto)
     {
         var movie = await _uow.MovieRepository.GetMovieById(dto.Id);
-
+        if (movie == null) throw new Exception("Movie not found");
         _mapper.Map(dto, movie);
         
         _uow.MovieRepository.Update(movie);
