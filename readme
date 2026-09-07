@@ -1,0 +1,10 @@
+```mermaid
+flowchart
+API[Movie.API] --> Services
+Services[Movie.Services] --> Contracts
+Presentation>Movie.Presentation] --> Contracts
+Contracts[Movie.Contracts] --> Core[Movie.Core]
+Data[(Movie.Data)] --> Core
+API --> Presentation
+API --> Data
+```
